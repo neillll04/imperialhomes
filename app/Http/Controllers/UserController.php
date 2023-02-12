@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
      //Show Register Create Form
-     public function create() {
-        return view('user.register');
+    public function create() {
+        return view('users.register');
     }
 
     //Create New User
     public function store(Request $request) {
         $formFields = $request->validate([
-            'name' => ['required', 'min:3'],
+            'firstname' => ['required', 'min:3'],
+            'lastname' => ['required', 'min:3'],
+            'username' => ['required', 'min:3'],
             'email' => ['required','email', Rule::unique('users', 'email')],
             'password' => 'required|confirmed|min:6'
         ]);
@@ -26,11 +29,12 @@ class UserController extends Controller
 
         //Create User
         $user = User::create($formFields);
+        // dd($user);
 
         //Login
         auth()->login($user); 
 
-        return redirect('/')->with('message', 'User created and logged in!');
+        return redirect('/login')->with('message', 'Created account successfully!');
     }
 
     //Logout User
@@ -45,16 +49,18 @@ class UserController extends Controller
 
     //SHow Login Form
     public function login() {
-        return view('user.login');
+        return view('users.login');
     }
 
     //Authenticate User
     public function authenticate(Request $request) {
-        $formFields = $request->validate([
-            'email' => ['required','email'],
-            'password' => 'required'
-        ]);
 
+        $formFields = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+
+        ]);
+        
         if(auth()->attempt($formFields)){
             $request->session()->regenerate();
 
@@ -65,14 +71,14 @@ class UserController extends Controller
     }
 
     public function index() {
-        return view('user.index');
+        return view('users.index');
     }
 
     public function property() {
-        return view('user.property');
+        return view('users.property');
     }
 
     public function agent() {
-        return view('user.agents');
+        return view('users.agents');
     }
 }

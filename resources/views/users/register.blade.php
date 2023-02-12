@@ -38,67 +38,77 @@
                           alt="logo"
                         />
                       </div>
-                      <form method="POST" action="/store">
+                      <form method="POST" action="/users/authenticate">
                         @csrf
                         <p class="mt-1 mb-4 pt-6">Please fill out all fields to create account</p>
                         <div class="mb-4">
                             <input
+                              value="{{old('firstname')}}"
+                              name="firstname"
                               type="text"
                               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                              id="exampleFormControlInput1"
-                              placeholder="Full Name"
+                              id="firstname"
+                              placeholder="First Name"
+                            />
+                          </div>
+                          <div class="mb-4">
+                            <input
+                              value="{{old('lastname')}}"
+                              name="lastname"
+                              type="text"
+                              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                              id="lastname"
+                              placeholder="Last Name"
                             />
                           </div>
                         <div class="mb-4">
                           <input
+                            value="{{old('username')}}"
+                            name="username"
                             type="text"
                             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="exampleFormControlInput1"
+                            id="username"
                             placeholder="Username"
                           />
                         </div>
                         <div class="mb-4">
                             <input
+                            value="{{old('email')}}"
+                              name="email"
                               type="email"
                               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                              id="exampleFormControlInput1"
+                              id="email"
                               placeholder="email"
                             />
                           </div>
                         <div class="mb-4">
+                          <label for="password"></label>
                           <input
+                            name="password"
                             type="password"
                             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="exampleFormControlInput1"
+                            id="password"
                             placeholder="Password"
                           />
                         </div>
                         <div class="mb-4">
+                          <label for="password_confirmation"></label>
                             <input
+                              name="password_confirmation"
                               type="password"
                               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                              id="exampleFormControlInput1"
+                              id="password_confirmation"
                               placeholder="Confirm Password"
                             />
                           </div>
                         <div class="text-center pt-1 mb-12 pb-1">
                           <button
-                            class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                            type="submit"
+                            class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md text-black hover:bg-amber-600 bg-amber-500 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
+                           
                             data-mdb-ripple="true"
-                            data-mdb-ripple-color="light"
-                            style="
-                              background: linear-gradient(
-                                to right,
-                                #86ee24,
-                                #36d846,
-                                #49d563,
-                                #50e05c
-                              );
-                            "
-                          >
+                            data-mdb-ripple-color="light">
                             Register
-                          </button>
+                        </button>
                         </div>
                       </form>
                     </div>

@@ -26,21 +26,62 @@
     style="background-image: url(images/hero-bg.jpg)">
     <!-- ####################################### Start Navbar ########################################### -->
     <nav
-      class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 min-w-full md:min-w-screen z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+      class=" px-2 sm:px-4 py-2.5 dark:bg-sky-900 min-w-full md:min-w-screen z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div class="container flex flex-wrap items-center justify-between mx-auto">
         <a href="/" class="flex items-center">
-          <img src="images/logo.png" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo">
+          <img src="images/logo.png" class="h-6 mr-3 sm:h-9">
           <span class="self-center text-xl font-semibold whitespace-nowrap text-amber-500">IMPERIAL</span><span
             class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">HOMES</span>
         </a>
+
         <div class="flex lg:order-2">
-          <a class="mr-2" href="/dashboard">
-            <button type="button"
-              class="text-white bg-amber-500 hover:bg-amber-400 focus:ring-2 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-5 md:mr-0"><i
-                class="fa-solid fa-chart-bar"></i> DashBoard</button></a>
-                <a class="mr-2" href="/login">
+          @auth
+          <div class="mr-5 text-yellow-500">
+            <span class="font-bold uppercase">Hi, {{auth()->user()->username}}</span>
+          </div>
+
+          {{-- dashboard --}}
+          <a class="mr-2 " href="/dashboard">
+            <button data-popover-target="popover-bottom" data-popover-placement="bottom" type="button"
+              class="text-white bg-amber-500 hover:bg-amber-400 focus:ring-2 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-5 md:mr-0">
+              
+              <div data-popover id="popover-bottom" role="tooltip" class="absolute z-10 invisible inline-block w-34 text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Dashboard</h3>
+                </div>
+                <div data-popper-arrow></div>
+            </div>
+              <i class="fa-solid fa-gauge"></i></button></a>
+                
+              
+              {{-- logout --}}
+                    <form class="inline" method="POST" action="/logout">
+                      @csrf
+                      <button data-popover-target="popover-right" data-popover-placement="bottom" type="submit"
+              class="text-white bg-amber-500 hover:bg-amber-400 focus:ring-2 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-5 md:mr-0">
+              
+              <div data-popover id="popover-right" role="tooltip" class="absolute z-10 invisible inline-block w-34 text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Logout</h3>
+                </div>
+                <div data-popper-arrow></div>
+            </div>
+            <i class="fa-solid fa-right-from-bracket"></i></button>
+                      </form>
+
+                  @else
+                <a class="mr-2" href="/register">
                   <button type="button"
-                    class="text-white bg-amber-500 hover:bg-amber-400 focus:ring-2 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-5 md:mr-0"><i class="fa-solid fa-right-to-bracket"></i> Login</button></a>
+                    class="text-white bg-amber-500 hover:bg-amber-400 focus:ring-2 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-5 md:mr-0"><i class="fa-solid fa-right-to-bracket"></i> Register
+                  </button>
+                </a>
+
+                      <a class="mr-2" href="/login">
+                        <button type="button"
+                    class="text-white bg-amber-500 hover:bg-amber-400 focus:ring-2 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-5 md:mr-0"><i class="fa-solid fa-right-to-bracket"></i> Login
+                        </button>
+                      </a>
+          @endauth
           <button data-collapse-toggle="navbar-sticky" type="button"
             class="inline-flex items-center p-2 text-sm text-amber-500 rounded-lg lg:hidden hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-200"
             aria-controls="navbar-sticky" aria-expanded="false">
@@ -53,9 +94,11 @@
             </svg>
           </button>
         </div>
+        
         <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
           <ul
             class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0 lg:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            
             <li>
               <a href="/"
                 class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:text-white hover:bg-amber-500 lg:hover:bg-transparent lg:hover:text-amber-500 lg:p-0 focus:text-amber-500"
@@ -81,6 +124,7 @@
                 class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:text-white hover:bg-amber-500 lg:hover:bg-transparent lg:hover:text-amber-500 lg:p-0"><i
                   class="fa-solid fa-envelope"></i> CONTACTS</a>
             </li>
+            
           </ul>
         </div>
       </div>
@@ -108,29 +152,6 @@
 
 
   <main>
-
-    <!-- Search -->
-    <!-- <form action="">
-        <div class="relative border-2 border-gray-100 m-4 rounded-lg">
-          <div class="absolute top-4 left-3">
-            <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
-          </div>
-          <input
-            type="text"
-            name="search"
-            class="h-14 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
-            placeholder="Search Laravel Jobs..."
-          />
-          <div class="absolute top-2 right-2">
-            <button
-              type="submit"
-              class="h-10 w-20 text-white rounded-lg bg-blue-500 hover:bg-blue-600"
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </form> -->
 
     <!-- ######################################## Start Search ############################################ -->
     <div class=" p-5 bg-amber-400 rounded">
@@ -377,15 +398,9 @@
                   <h4 class="text-1xl uppercase">Total Branches</h4>
                 </div>
               </div>
-
             </div>
-
-
-
           </div>
-
         </div>
-
       </section>
     </div>
     <!--END OF ABOUT US -->

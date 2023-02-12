@@ -24,11 +24,17 @@ Route::get('/agents', [UserController::class, 'agent']);
 
 Route::get('/login', [UserController::class, 'login']);
 
+//Login User
+Route::post('/login/authenticate', [UserController::class, 'authenticate']);
+
 //Show Register / Create Form
 Route::get('/register', [UserController::class, 'create']);
 
 //Create New User
-Route::post('/store', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store']);
+
+//Log User Out
+Route::post('/logout', [UserController::class, 'logout']);
 
 /* Dashboard */
 Route::get('/dashboard', [DashboardController::class, 'index']);
